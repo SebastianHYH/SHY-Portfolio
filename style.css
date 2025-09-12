@@ -8,11 +8,12 @@
 }
 
 .main-page .background {
-
+    margin-left: 250px;  
+    margin-top: -8px;
 }
 
 .main-page .text {
-    
+    margin-left: 250px;   
 }
 /*Sidebar*/
 .sidebar {
