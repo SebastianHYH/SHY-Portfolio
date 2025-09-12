@@ -1,16 +1,26 @@
+.page-container {
+    display: flex;
+}
+
+/*Main Page*/
+.main-page {
+    margin-top: -10px;
+    margin-left: 250px;
+}
+/*Sidebar*/
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 200px;
-  display: flex;
-  overflow-x: hidden;
-  flex-direction: column;
-  background: #161a2d;
-  padding: 25px 20px;
-  transition: all 0.4s ease;
-  align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    display: flex;
+    overflow-x: hidden; 
+    flex-direction: column;
+    background: #161a2d;
+    padding: 25px 20px;
+    /* transition: all 0.4s ease; */
+    align-items: center;
 }
 
 .sidebar .sidebar-header img {
@@ -29,6 +39,7 @@ ul.sidebar-links {
     text-align: left;
 }
 
+/*Text*/
 li a {
     text-decoration: none;
     color:aliceblue;
