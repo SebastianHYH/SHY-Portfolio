@@ -1,13 +1,17 @@
 .page-container {
     display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 body {
     background: #e3f6f5;
+    overflow: hidden;
 }
 
 /*Main Page*/
 .main-page {
+    flex: 1;
     margin-left: 15vw;
     display: flex;
     align-items: center;
@@ -95,6 +99,28 @@ ul.sidebar-links {
     list-style-type: none;
     display: inline;
     text-align: left;
+    opacity: 0;
+    animation: fadeSlideInLeft 1s ease-out 0.2s forwards;
+}
+
+/*Footer*/
+.footer {
+    margin-left: 11vw;
+    margin-top: 90px;
+    background-color: aliceblue;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    opacity: 0;
+    animation: fadeSlideIn 1s ease-out 0.7s forwards;
+}
+
+.column {
+    flex: 1;
+    padding: 20px 50px;
 }
 
 /*Text*/
@@ -123,5 +149,15 @@ li a {
         opacity: 0;
     } to {
         opacity: 1;
+    }
+}
+
+@keyframes fadeSlideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    } to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
