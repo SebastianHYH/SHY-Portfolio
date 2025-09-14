@@ -171,18 +171,18 @@ ul.sidebar-links a:hover {
     gap: 5vh;
 }
 
-.column {
+.project {
     flex: 1;
     padding: 20px 50px;
     filter: brightness(80%);
     transition: border-radius 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s cubic-bezier(.4,2,.6,1);
 }
 
-.column img {
+.project img {
     border-radius: 10px;
 }
 
-.column:hover {
+.project:hover {
     border-radius: 20px;
     box-shadow: 0 8px 24px rgba(39,35,67,0.12);
 }
