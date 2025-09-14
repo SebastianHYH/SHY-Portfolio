@@ -10,14 +10,14 @@
         <aside class="sidebar">
             <div class="sidebar-container">
                 <ul class="sidebar-links">
-                    <li><a href="#"><i class="fa-solid fa-user"></i> About</a></li>
-                    <li><a href="#"><i class="fa-solid fa-file"></i> Projects</a></li>
-                    <li><a href="#"><i class="fa-solid fa-book"></i> Skills</a></li>
-                    <li><a href="#"><i class="fa-solid fa-address-book"></i> Contact</a></li>
+                    <li><a href="#about"><i class="fa-solid fa-user"></i> About</a></li>
+                    <li><a href="#projects"><i class="fa-solid fa-file"></i> Projects</a></li>
+                    <!-- <li><a href="#"><i class="fa-solid fa-book"></i> Skills</a></li> -->
+                    <li><a href="#contact"><i class="fa-solid fa-address-book"></i> Contact</a></li>
                 </ul>
             </div>
         </aside>
-        <section class="main-page">
+        <section class="main-page" id="about">
             <div class="info">
                 <h1>Sebastian Hung Yansen</h1>
                 <p>A highly motivated individual with a strong passion for problem-solving and computational thinking. Seeking to contribute to innovative projects and further develop skills in the field of computer science.</p>
@@ -31,25 +31,70 @@
             </div>
             <img src="files/info.jpg" alt="me"/>
         </section>
-        <footer class="footer">
-            <h2 style="margin-left: 50px; margin-bottom: 10px; color: #272343;">Recent projects</h2>
-            <div class="row">
+        <section class="projects" id="projects">
+            <h2 style="margin-left: 50px; margin-bottom: 10px; color: #272343;">Projects</h2>
+            <div class="projects-grid">
                 <div class="column">
-                    <img src="files/quaternion.png" style="width:400px;height:200px;"/>
-                    <h2>Quaternion Visualizer</h2>
-                    <p>An application that allows you to visualize 3d objects and quaternions</p>
+                    <a href="https://github.com/SebastianHYH/Quaternion-Visualizer" style="display:block; text-decoration:none; color:inherit;">
+                        <img src="files/quaternion.png" style="width:400px;height:200px;"/>
+                        <h2>Quaternion Visualizer</h2>
+                        <p>An application that allows you to visualize 3d objects and quaternions</p>
+                    </a>
                 </div>
                 <div class="column">
-                    <img src="files/rescueplan.jpg" style="width:400px;height:200px;"/>
-                    <h2>Rescue Plan Searcher</h2>
-                    <p>Solver for 'Rescue Plan' board game</p>
+                    <a href="https://github.com/SebastianHYH/RescuePlanSearcher" style="display:block; text-decoration:none; color:inherit;">
+                        <img src="files/rescueplan.jpg" style="width:400px;height:200px;"/>
+                        <h2>Rescue Plan Searcher</h2>
+                        <p>Solver for 'Rescue Plan' board game</p>
+                    </a>
                 </div>
                 <div class="column">
-                    <img src="files/sparktools.jpg" style="width:400px;height:200px;"/>
-                    <h2>Spark Tools</h2>
-                    <p>A collection of scripts that grabs midi and album files</p>
+                    <a href="https://github.com/SebastianHYH/Spark-Tools" style="display:block; text-decoration:none; color:inherit;">
+                        <img src="files/sparktools.jpg" style="width:400px;height:200px;"/>
+                        <h2>Spark Tools</h2>
+                        <p>A collection of scripts that grabs midi and album images</p>
+                    </a>
+                </div>
+                <div class="column">
+                    <a href="https://github.com/SebastianHYH/IoT-Dashboard" style="display:block; text-decoration:none; color:inherit;">
+                        <img src="files/iotdashboard.png" style="width:400px;height:200px;"/>
+                        <h2>IoT Dashboard</h2>
+                        <p>A simple IoT based dashboard to observe sleeping patients</p>
+                    </a>
+                </div>
+                <div class="column">
+                    <a href="https://github.com/SebastianHYH/Tucil2_13523070" style="display:block; text-decoration:none; color:inherit;">
+                        <img src="files/imageCompression.jpg" style="width:400px;height:200px;"/>
+                        <h2>Image Compression</h2>
+                        <p>A tool that uses Quadtrees to compress images</p>
+                    </a>
+                </div>
+                <div class="column">
+                    <a href="https://github.com/SebastianHYH/IF2150-2024-K02-G08-PlanPal" style="display:block; text-decoration:none; color:inherit;">
+                        <img src="files/planPal.jpg" style="width:400px;height:200px;"/>
+                        <h2>Event Planner</h2>
+                        <p>A simple event planning application</p>
+                    </a>
                 </div>
             </div>
-        </footer>
+        </section>
+        <section class="contact" id="contact">
+            <h1>Contact</h1>
+            <h2>e-mail: sebastianhung25@gmail.com</h2>
+            <h2>Phone: +62 821-1654-8958</h2>
+            <div class="gap"></div>
+            <div class="image-banner">
+                <img src="files/banner/contactbanner.jpg" style="width:auto;"/>
+                <img src="files/banner/contactbanner2.jpg" style="width:auto;"/>
+                <img src="files/banner/contactbanner3.jpg" style="width: auto;"/>
+                <img src="files/banner/contactbanner4.jpg" style="width: auto;"/>
+                <img src="files/banner/contactbanner5.jpg" style="width: auto;"/>
+                <img src="files/banner/contactbanner.jpg" style="width:auto;"/>
+                <img src="files/banner/contactbanner2.jpg" style="width:auto;"/>
+                <img src="files/banner/contactbanner3.jpg" style="width: auto;"/>
+                <img src="files/banner/contactbanner4.jpg" style="width: auto;"/>
+                <img src="files/banner/contactbanner5.jpg" style="width: auto;"/>
+            </div>
+        </section>
     </div>
 </body>
