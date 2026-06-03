@@ -1,102 +1,281 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebastian Hung Yansen — Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Sebastian Hung Yansen — a computer science student passionate about problem-solving and computational thinking, building projects across visualization, tooling, and IoT.">
+    <meta name="author" content="Sebastian Hung Yansen">
+    <meta name="theme-color" content="#272343">
+    <link rel="canonical" href="https://sebastianhyh.github.io/SHY-Portfolio/">
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sebastian Hung Yansen — Portfolio">
+    <meta property="og:description"
+        content="Computer science student passionate about problem-solving and computational thinking.">
+    <meta property="og:image" content="https://sebastianhyh.github.io/SHY-Portfolio/files/img/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://sebastianhyh.github.io/SHY-Portfolio/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://sebastianhyh.github.io/SHY-Portfolio/files/img/og.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="files/x-icon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <title>SHY-Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="files/x-icon.svg">
 </head>
 
 <body>
+    <!-- Inline SVG icon sprite -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+        </symbol>
+        <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" />
+            <rect x="3" y="14" width="7" height="7" rx="1" />
+        </symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-10 6L2 7" />
+        </symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
+        </symbol>
+        <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.4-1.27.73-1.56-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z" />
+        </symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+        </symbol>
+        <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            <path d="M15 3h6v6M10 14 21 3" />
+        </symbol>
+    </svg>
+
+    <a class="skip-link" href="#about">Skip to content</a>
+
     <div class="page-container">
-        <aside class="sidebar">
-            <div class="sidebar-container">
+        <!-- Sidebar / navigation -->
+        <header class="sidebar">
+            <a class="brand" href="#about" aria-label="Sebastian Hung Yansen — home">
+                <img src="files/x-icon.svg" alt="" width="32" height="36">
+                <span class="brand-name">Sebastian<br>Hung Yansen</span>
+            </a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                aria-controls="primary-nav">
+                <span></span><span></span><span></span>
+            </button>
+
+            <nav id="primary-nav" class="primary-nav" aria-label="Primary">
                 <ul class="sidebar-links">
-                    <li><a href="#about"><i class="fa-solid fa-user"></i> About</a></li>
-                    <li><a href="#projects"><i class="fa-solid fa-file"></i> Projects</a></li>
-                    <!-- <li><a href="#"><i class="fa-solid fa-book"></i> Skills</a></li> -->
-                    <li><a href="#contact"><i class="fa-solid fa-address-book"></i> Contact</a></li>
+                    <li><a href="#about"><svg class="ic" aria-hidden="true"><use href="#i-user" /></svg> About</a></li>
+                    <li><a href="#projects"><svg class="ic" aria-hidden="true"><use href="#i-grid" /></svg>
+                            Projects</a></li>
+                    <li><a href="#contact"><svg class="ic" aria-hidden="true"><use href="#i-mail" /></svg>
+                            Contact</a></li>
                 </ul>
-            </div>
-        </aside>
-        <section class="main-page" id="about">
-            <div class="info">
-                <h1>Sebastian Hung Yansen</h1>
-                <p>A highly motivated individual with a strong passion for problem-solving and computational thinking. Seeking to contribute to innovative projects and further develop skills in the field of computer science.</p>
-                <div class="btn-social">
-                    <a href="files/CV_Sebastian Hung Yansen.pdf" target="_blank" class="btn">Download CV</a>
-                    <div class="social">
-                        <a href="https://www.linkedin.com/in/sebastian-hung-yansen-228157300/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/SebastianHYH" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <div class="sidebar-social">
+                    <a href="https://www.linkedin.com/in/sebastian-hung-yansen-228157300/" target="_blank"
+                        rel="noopener" aria-label="LinkedIn">
+                        <svg class="ic" aria-hidden="true"><use href="#i-linkedin" /></svg>
+                    </a>
+                    <a href="https://github.com/SebastianHYH" target="_blank" rel="noopener" aria-label="GitHub">
+                        <svg class="ic" aria-hidden="true"><use href="#i-github" /></svg>
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <!-- Hero / About -->
+            <section class="hero" id="about">
+                <div class="hero-text reveal">
+                    <p class="eyebrow">Problem-solver · Computer Science</p>
+                    <h1>Sebastian<br>Hung&nbsp;Yansen</h1>
+                    <p class="lead">A highly motivated individual with a strong passion for problem-solving and
+                        computational thinking. Seeking to contribute to innovative projects and further develop skills
+                        in the field of computer science.</p>
+                    <div class="btn-social">
+                        <a href="files/CV__SebastianHY_.pdf" target="_blank" rel="noopener" class="btn">
+                            Download CV
+                            <svg class="ic" aria-hidden="true"><use href="#i-arrow" /></svg>
+                        </a>
+                        <a href="#projects" class="btn btn-ghost">View projects</a>
                     </div>
                 </div>
+                <div class="hero-photo reveal">
+                    <img src="files/img/profile.webp" alt="Portrait of Sebastian Hung Yansen" width="640" height="640">
+                </div>
+            </section>
+
+            <!-- Projects -->
+            <section class="projects" id="projects">
+                <header class="section-head reveal">
+                    <h2>Projects</h2>
+                    <p>A selection of things I've built — visualizers, solvers, tooling and dashboards.</p>
+                </header>
+                <div class="projects-grid">
+                    <a class="project reveal" href="https://github.com/SebastianHYH/Quaternion-Visualizer"
+                        target="_blank" rel="noopener">
+                        <div class="project-media">
+                            <img src="files/img/quaternion.webp" alt="Quaternion Visualizer screenshot" loading="lazy"
+                                width="800" height="414">
+                        </div>
+                        <div class="project-body">
+                            <h3>Quaternion Visualizer <svg class="ic ic-ext" aria-hidden="true"><use
+                                        href="#i-external" /></svg></h3>
+                            <p>An application that lets you visualize 3D objects and quaternions.</p>
+                        </div>
+                    </a>
+
+                    <a class="project reveal" href="https://github.com/SebastianHYH/RescuePlanSearcher" target="_blank"
+                        rel="noopener">
+                        <div class="project-media">
+                            <img src="files/img/rescueplan.webp" alt="Rescue Plan Searcher screenshot" loading="lazy"
+                                width="800" height="400">
+                        </div>
+                        <div class="project-body">
+                            <h3>Rescue Plan Searcher <svg class="ic ic-ext" aria-hidden="true"><use
+                                        href="#i-external" /></svg></h3>
+                            <p>A solver for the "Rescue Plan" board game.</p>
+                        </div>
+                    </a>
+
+                    <a class="project reveal" href="https://github.com/SebastianHYH/Spark-Tools" target="_blank"
+                        rel="noopener">
+                        <div class="project-media">
+                            <img src="files/img/sparktools.webp" alt="Spark Tools screenshot" loading="lazy" width="800"
+                                height="450">
+                        </div>
+                        <div class="project-body">
+                            <h3>Spark Tools <svg class="ic ic-ext" aria-hidden="true"><use href="#i-external" /></svg>
+                            </h3>
+                            <p>A collection of scripts that grab MIDI files and album artwork.</p>
+                        </div>
+                    </a>
+
+                    <a class="project reveal" href="https://github.com/SebastianHYH/IoT-Dashboard" target="_blank"
+                        rel="noopener">
+                        <div class="project-media">
+                            <img src="files/img/iotdashboard.webp" alt="IoT Dashboard screenshot" loading="lazy"
+                                width="800" height="450">
+                        </div>
+                        <div class="project-body">
+                            <h3>IoT Dashboard <svg class="ic ic-ext" aria-hidden="true"><use href="#i-external" /></svg>
+                            </h3>
+                            <p>A simple IoT-based dashboard to monitor sleeping patients.</p>
+                        </div>
+                    </a>
+
+                    <a class="project reveal" href="https://github.com/SebastianHYH/Tucil2_13523070" target="_blank"
+                        rel="noopener">
+                        <div class="project-media">
+                            <img src="files/img/imagecompression.webp" alt="Image Compression tool screenshot"
+                                loading="lazy" width="800" height="450">
+                        </div>
+                        <div class="project-body">
+                            <h3>Image Compression <svg class="ic ic-ext" aria-hidden="true"><use
+                                        href="#i-external" /></svg></h3>
+                            <p>A tool that uses quadtrees to compress images.</p>
+                        </div>
+                    </a>
+
+                    <a class="project reveal" href="https://github.com/SebastianHYH/IF2150-2024-K02-G08-PlanPal"
+                        target="_blank" rel="noopener">
+                        <div class="project-media">
+                            <img src="files/img/planpal.webp" alt="Event Planner application screenshot" loading="lazy"
+                                width="800" height="450">
+                        </div>
+                        <div class="project-body">
+                            <h3>Event Planner <svg class="ic ic-ext" aria-hidden="true"><use href="#i-external" /></svg>
+                            </h3>
+                            <p>A simple event-planning application.</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section class="contact" id="contact">
+                <header class="section-head reveal">
+                    <h2>Get in touch</h2>
+                    <p>Have an opportunity or just want to say hello? I'd love to hear from you.</p>
+                </header>
+                <div class="contact-cards reveal">
+                    <a class="contact-card" href="mailto:sebastianhung25@gmail.com">
+                        <svg class="ic" aria-hidden="true"><use href="#i-mail" /></svg>
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">sebastianhung25@gmail.com</span>
+                    </a>
+                    <a class="contact-card" href="tel:+6282116548958">
+                        <svg class="ic" aria-hidden="true"><use href="#i-phone" /></svg>
+                        <span class="contact-label">Phone</span>
+                        <span class="contact-value">+62 821-1654-8958</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Scrolling photo banner -->
+            <div class="image-banner" aria-hidden="true">
+                <div class="banner-track">
+                    <img src="files/img/banner1.webp" alt="" loading="lazy">
+                    <img src="files/img/banner2.webp" alt="" loading="lazy">
+                    <img src="files/img/banner3.webp" alt="" loading="lazy">
+                    <img src="files/img/banner4.webp" alt="" loading="lazy">
+                    <img src="files/img/banner5.webp" alt="" loading="lazy">
+                    <!-- duplicated for a seamless loop -->
+                    <img src="files/img/banner1.webp" alt="" loading="lazy">
+                    <img src="files/img/banner2.webp" alt="" loading="lazy">
+                    <img src="files/img/banner3.webp" alt="" loading="lazy">
+                    <img src="files/img/banner4.webp" alt="" loading="lazy">
+                    <img src="files/img/banner5.webp" alt="" loading="lazy">
+                </div>
             </div>
-            <img src="files/info.jpg" alt="me"/>
-        </section>
-        <section class="projects" id="projects">
-            <h2 style="margin-left: 50px; margin-bottom: 10px; color: #272343;">Projects</h2>
-            <div class="projects-grid">
-                <div class="project">
-                    <a href="https://github.com/SebastianHYH/Quaternion-Visualizer" style="display:block; text-decoration:none; color:inherit;">
-                        <img src="files/quaternion.png" style="width:400px;height:200px;"/>
-                        <h2>Quaternion Visualizer</h2>
-                        <p>An application that allows you to visualize 3d objects and quaternions</p>
+
+            <footer class="site-footer">
+                <p>© <span id="year">2026</span> Sebastian Hung Yansen</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/sebastian-hung-yansen-228157300/" target="_blank"
+                        rel="noopener" aria-label="LinkedIn">
+                        <svg class="ic" aria-hidden="true"><use href="#i-linkedin" /></svg>
+                    </a>
+                    <a href="https://github.com/SebastianHYH" target="_blank" rel="noopener" aria-label="GitHub">
+                        <svg class="ic" aria-hidden="true"><use href="#i-github" /></svg>
                     </a>
                 </div>
-                <div class="project">
-                    <a href="https://github.com/SebastianHYH/RescuePlanSearcher" style="display:block; text-decoration:none; color:inherit;">
-                        <img src="files/rescueplan.jpg" style="width:400px;height:200px;"/>
-                        <h2>Rescue Plan Searcher</h2>
-                        <p>Solver for 'Rescue Plan' board game</p>
-                    </a>
-                </div>
-                <div class="project">
-                    <a href="https://github.com/SebastianHYH/Spark-Tools" style="display:block; text-decoration:none; color:inherit;">
-                        <img src="files/sparktools.jpg" style="width:400px;height:200px;"/>
-                        <h2>Spark Tools</h2>
-                        <p>A collection of scripts that grabs midi and album images</p>
-                    </a>
-                </div>
-                <div class="project">
-                    <a href="https://github.com/SebastianHYH/IoT-Dashboard" style="display:block; text-decoration:none; color:inherit;">
-                        <img src="files/iotdashboard.png" style="width:400px;height:200px;"/>
-                        <h2>IoT Dashboard</h2>
-                        <p>A simple IoT based dashboard to observe sleeping patients</p>
-                    </a>
-                </div>
-                <div class="project">
-                    <a href="https://github.com/SebastianHYH/Tucil2_13523070" style="display:block; text-decoration:none; color:inherit;">
-                        <img src="files/imageCompression.jpg" style="width:400px;height:200px;"/>
-                        <h2>Image Compression</h2>
-                        <p>A tool that uses Quadtrees to compress images</p>
-                    </a>
-                </div>
-                <div class="project">
-                    <a href="https://github.com/SebastianHYH/IF2150-2024-K02-G08-PlanPal" style="display:block; text-decoration:none; color:inherit;">
-                        <img src="files/planPal.jpg" style="width:400px;height:200px;"/>
-                        <h2>Event Planner</h2>
-                        <p>A simple event planning application</p>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <section class="contact" id="contact">
-            <h1>Contact</h1>
-            <h2>e-mail: sebastianhung25@gmail.com</h2>
-            <h2>Phone: +62 821-1654-8958</h2>
-            <div class="gap"></div>
-            <div class="image-banner">
-                <img src="files/banner/contactbanner.jpg" style="width:auto;"/>
-                <img src="files/banner/contactbanner2.jpg" style="width:auto;"/>
-                <img src="files/banner/contactbanner3.jpg" style="width: auto;"/>
-                <img src="files/banner/contactbanner4.jpg" style="width: auto;"/>
-                <img src="files/banner/contactbanner5.jpg" style="width: auto;"/>
-                <img src="files/banner/contactbanner.jpg" style="width:auto;"/>
-                <img src="files/banner/contactbanner2.jpg" style="width:auto;"/>
-                <img src="files/banner/contactbanner3.jpg" style="width: auto;"/>
-                <img src="files/banner/contactbanner4.jpg" style="width: auto;"/>
-                <img src="files/banner/contactbanner5.jpg" style="width: auto;"/>
-            </div>
-        </section>
+            </footer>
+        </main>
     </div>
+
+    <script src="main.js" defer></script>
 </body>
+
+</html>
