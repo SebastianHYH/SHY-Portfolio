@@ -1,0 +1,41 @@
+---
+import Icon from './Icon.astro';
+import type { Project } from '../lib/github';
+
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+---
+
+<a class="project reveal" href={project.url} target="_blank" rel="noopener">
+  <div class="project-media">
+    <img
+      src={project.image}
+      alt={`${project.title} preview`}
+      loading="lazy"
+      width="800"
+      height="500"
+    />
+  </div>
+  <div class="project-body">
+    <h3>{project.title} <Icon name="external" class="ic-ext" /></h3>
+    <p>{project.description}</p>
+    {
+      (project.language || project.stars > 0) && (
+        <div class="project-meta">
+          {project.language && (
+            <span class="lang">
+              <span class="lang-dot" /> {project.language}
+            </span>
+          )}
+          {project.stars > 0 && (
+            <span class="stars">
+              <Icon name="star" /> {project.stars}
+            </span>
+          )}
+        </div>
+      )
+    }
+  </div>
+</a>
