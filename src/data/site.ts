@@ -4,8 +4,10 @@
  */
 export const site = {
   name: 'Sebastian Hung Yansen',
-  /** Short eyebrow label shown above the hero heading. */
+  /** Short eyebrow label shown above the hero heading and under the sidebar name. */
   role: 'Problem-solver · Computer Science',
+  /** Availability status shown as a pill in the sidebar. Set to '' to hide it. */
+  availability: 'Open to opportunities',
   tagline:
     'A highly motivated individual with a strong passion for problem-solving and ' +
     'computational thinking. Seeking to contribute to innovative projects and further ' +

@@ -63,6 +63,8 @@ const favicon = withBase('files/x-icon.svg');
         const setOpen = (open: boolean) => {
           toggle.setAttribute('aria-expanded', String(open));
           nav.classList.toggle('open', open);
+          // Lock background scroll while the full-screen menu is open (mobile).
+          document.documentElement.classList.toggle('menu-open', open);
         };
         toggle.addEventListener('click', () =>
           setOpen(toggle.getAttribute('aria-expanded') !== 'true'),
