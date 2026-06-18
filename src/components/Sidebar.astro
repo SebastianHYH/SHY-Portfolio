@@ -44,22 +44,6 @@ const languages = await getLanguages();
       <li><a href="#contact"><Icon name="mail" /> Contact</a></li>
     </ul>
 
-    {
-      languages.length > 0 && (
-        <div class="sidebar-tech">
-          <p class="sidebar-label">Tech I use</p>
-          <ul class="tech-list">
-            {languages.map((lang) => (
-              <li>
-                <span class="lang-dot" style={`background:${lang.color}`} />
-                {lang.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )
-    }
-
     <a class="btn sidebar-cv" href={withBase(site.cv)} target="_blank" rel="noopener">
       <Icon name="arrow" /> Download CV
     </a>
