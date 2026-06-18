@@ -5,9 +5,9 @@
 export const site = {
   name: "Sebastian Hung Yansen",
   /** Short eyebrow label shown above the hero heading and under the sidebar name. */
-  role: "Problem-solver · Computer Science",
+  role: "Problem-solver · Computer Science · Informatics Engineering",
   /** Availability status shown as a pill in the sidebar. Set to '' to hide it. */
-  availability: "Open to opportunities",
+  availability: "Working",
   tagline:
     "A highly motivated individual with a strong passion for problem-solving and " +
     "computational thinking. Seeking to contribute to innovative projects and further " +
@@ -25,7 +25,7 @@ export const site = {
 
   github: "SebastianHYH",
   githubUrl: "https://github.com/SebastianHYH",
-  linkedinUrl: "https://www.linkedin.com/in/sebastian-hung-yansen-228157300/",
+  linkedinUrl: "https://www.linkedin.com/in/sebastianhy/",
 
   /**
    * Repositories tagged with any of these GitHub *topics* are featured in the

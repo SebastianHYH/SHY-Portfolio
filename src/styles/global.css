@@ -210,7 +210,7 @@ img {
 
 .sidebar-links {
     list-style: none;
-    margin: 0;
+    margin: 0 0 26px;
     padding: 0;
     display: flex;
     flex-direction: column;
