@@ -22,8 +22,12 @@ const projects = await getProjects();
     ) : (
       <div class="empty-projects reveal">
         <p>
-          Projects will appear here once repositories are tagged with the
-          <code>{site.projectsTopic}</code> topic on GitHub.
+          Projects will appear here once repositories are tagged on GitHub with
+          one of these topics: {
+            site.projectTopics.map((t, i) => (
+              <>{i > 0 ? ', ' : ''}<code>{t.topic}</code></>
+            ))
+          }.
         </p>
       </div>
     )

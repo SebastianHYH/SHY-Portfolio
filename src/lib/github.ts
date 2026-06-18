@@ -15,6 +15,8 @@ export interface Project {
   topics: string[];
   image: string;
   updatedAt: string;
+  /** Display label for the matched topic (e.g. "Assignment"); '' if none. */
+  category: string;
 }
 
 export interface Language {
@@ -62,6 +64,23 @@ const prettify = (name: string): string =>
     .replace(/[-_]+/g, ' ')
     .replace(/\b\w/g, (c) => c.toUpperCase())
     .trim();
+
+/**
+ * Finds the first configured topic a repo matches, returning its label and the
+ * config index (used for grouping). Index is large when nothing matches so such
+ * repos sort last.
+ */
+function categoryFor(topics: string[]): { label: string; index: number } {
+  const match = site.projectTopics.findIndex((t) => topics.includes(t.topic));
+  return match === -1
+    ? { label: '', index: site.projectTopics.length }
+    : { label: site.projectTopics[match].label, index: match };
+}
+
+/** Resolves a single topic name to its configured label (or a prettified one). */
+function labelForTopic(topic: string): string {
+  return site.projectTopics.find((t) => t.topic === topic)?.label ?? prettify(topic);
+}
 
 /**
  * Fetches the user's public repos once and memoizes the result, so multiple
@@ -119,6 +138,9 @@ function toProject(r: GitHubRepo): Project {
       ? withBase(o.image)
       : `https://opengraph.githubassets.com/1/${site.github}/${r.name}`,
     updatedAt: r.pushed_at ?? r.updated_at ?? '',
+    // An override `topic` wins (handy for local previews); otherwise derive the
+    // badge from the repo's real GitHub topics.
+    category: o.topic ? labelForTopic(o.topic) : categoryFor(r.topics ?? []).label,
   };
 }
 
@@ -131,9 +153,10 @@ function toProject(r: GitHubRepo): Project {
  */
 export async function getProjects(): Promise<Project[]> {
   const repos = await fetchRepos();
+  const featuredTopics = site.projectTopics.map((t) => t.topic);
 
   const tagged = repos.filter(
-    (r) => !r.fork && (r.topics ?? []).includes(site.projectsTopic),
+    (r) => !r.fork && (r.topics ?? []).some((t) => featuredTopics.includes(t)),
   );
 
   // Fallback so the first deploy (before any repo is tagged) is not empty.
@@ -142,15 +165,23 @@ export async function getProjects(): Promise<Project[]> {
     chosen = repos.filter((r) => overrides[r.name]);
     if (chosen.length) {
       console.warn(
-        `[github] No repos tagged "${site.projectsTopic}" yet — showing ${chosen.length} ` +
-          'curated fallback project(s). Tag repos with the topic to control this list.',
+        `[github] No repos tagged with [${featuredTopics.join(', ')}] yet — showing ` +
+          `${chosen.length} curated fallback project(s). Tag repos with a topic to ` +
+          'control this list.',
       );
     }
   }
 
+  const catRank = (p: Project) => {
+    const i = site.projectTopics.findIndex((t) => t.label === p.category);
+    return i === -1 ? site.projectTopics.length : i;
+  };
+
   return chosen
     .map(toProject)
     .sort((a, b) => {
+      // Group by category (config order), then curated order, stars, recency.
+      if (catRank(a) !== catRank(b)) return catRank(a) - catRank(b);
       const oa = overrides[a.name]?.order ?? 999;
       const ob = overrides[b.name]?.order ?? 999;
       if (oa !== ob) return oa - ob;

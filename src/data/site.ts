@@ -28,9 +28,14 @@ export const site = {
   linkedinUrl: "https://www.linkedin.com/in/sebastian-hung-yansen-228157300/",
 
   /**
-   * Only repositories tagged with this GitHub *topic* appear in the Projects
-   * section. Add the topic to a repo and it shows up automatically on the next
-   * build — no code changes needed.
+   * Repositories tagged with any of these GitHub *topics* are featured in the
+   * Projects section. Each topic maps to a `label` shown as a badge on the card.
+   * Add a topic to a repo on GitHub and it appears on the next build — no code
+   * changes needed. A repo matching several topics uses the first one listed
+   * here (so order them by priority). GitHub topics must be lowercase/hyphenated.
    */
-  projectsTopic: "portfolio",
+  projectTopics: [
+    { topic: "portfolio", label: "Project" },
+    { topic: "assignment", label: "Assignment" },
+  ],
 } as const;

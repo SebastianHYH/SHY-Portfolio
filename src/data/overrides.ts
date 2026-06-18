@@ -18,6 +18,8 @@ export interface Override {
   url?: string;
   /** Lower numbers sort first. Untagged repos sort after by stars/recency. */
   order?: number;
+  /** Override the badge shown for this repo (defaults to the first matching topic). */
+  topic?: string;
 }
 
 export const overrides: Record<string, Override> = {
@@ -26,23 +28,27 @@ export const overrides: Record<string, Override> = {
     description: "A solver for the 'Rescue Plan' board game.",
     image: 'files/img/rescueplan.webp',
     order: 1,
+    topic: "portfolio",
   },
   'Spark-Tools': {
     title: 'Spark Tools',
     description: 'Scripts that fetch and modify MIDI data and album artwork.',
     image: 'files/img/sparktools.webp',
     order: 2,
+    topic: 'portfolio',
   },
   'IoT-Dashboard': {
     title: 'IoT Dashboard',
     description: 'A simple IoT-based dashboard to monitor sleeping patients.',
     image: 'files/img/iotdashboard.webp',
     order: 3,
+    topic: 'assignment',
   },
   QuadtreeImageCompression: {
     title: 'Quadtree Image Compression',
     description: 'A tool that uses quadtrees to compress images.',
     image: 'files/img/imagecompression.webp',
     order: 4,
+    topic: 'assignment',
   },
 };

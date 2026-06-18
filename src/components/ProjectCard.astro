@@ -10,6 +10,7 @@ const { project } = Astro.props;
 
 <a class="project reveal" href={project.url} target="_blank" rel="noopener">
   <div class="project-media">
+    {project.category && <span class="project-badge">{project.category}</span>}
     <img
       src={project.image}
       alt={`${project.title} preview`}
