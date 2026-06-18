@@ -1,0 +1,17 @@
+{
+  "name": "shy-portfolio",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Personal portfolio of Sebastian Hung Yansen — Astro, auto-synced with GitHub.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^6.4.4"
+  }
+}

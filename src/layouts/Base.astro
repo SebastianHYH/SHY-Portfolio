@@ -1,0 +1,130 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+import { withBase } from '../lib/util';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${site.name} — Portfolio`,
+  description = `Portfolio of ${site.name} — ${site.tagline}`,
+} = Astro.props;
+
+const ogImage = new URL('files/img/og.jpg', site.url).href;
+const favicon = withBase('files/x-icon.svg');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={site.name} />
+    <meta name="theme-color" content="#272343" />
+    <link rel="canonical" href={site.url} />
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={site.url} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" type="image/svg+xml" href={favicon} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      // ---- Mobile nav toggle ------------------------------------------------
+      const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+      const nav = document.getElementById('primary-nav');
+
+      if (toggle && nav) {
+        const setOpen = (open: boolean) => {
+          toggle.setAttribute('aria-expanded', String(open));
+          nav.classList.toggle('open', open);
+          // Lock background scroll while the full-screen menu is open (mobile).
+          document.documentElement.classList.toggle('menu-open', open);
+        };
+        toggle.addEventListener('click', () =>
+          setOpen(toggle.getAttribute('aria-expanded') !== 'true'),
+        );
+        nav.querySelectorAll('a').forEach((link) =>
+          link.addEventListener('click', () => setOpen(false)),
+        );
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') setOpen(false);
+        });
+      }
+
+      // ---- Scroll-reveal ----------------------------------------------------
+      const revealEls = document.querySelectorAll<HTMLElement>('.reveal');
+      if ('IntersectionObserver' in window && revealEls.length) {
+        const io = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -10% 0px' },
+        );
+        revealEls.forEach((el) => io.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+      }
+
+      // Stagger project cards
+      document
+        .querySelectorAll<HTMLElement>('.projects-grid .project')
+        .forEach((card, i) => card.style.setProperty('--i', String(i)));
+
+      // ---- Scroll-spy -------------------------------------------------------
+      const links = Array.from(
+        document.querySelectorAll<HTMLAnchorElement>('.sidebar-links a'),
+      );
+      const sections = links
+        .map((link) => document.querySelector(link.getAttribute('href') || ''))
+        .filter((el): el is Element => Boolean(el));
+
+      if ('IntersectionObserver' in window && sections.length) {
+        const spy = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.id;
+                links.forEach((l) =>
+                  l.classList.toggle('active', l.getAttribute('href') === `#${id}`),
+                );
+              }
+            });
+          },
+          { rootMargin: '-45% 0px -50% 0px' },
+        );
+        sections.forEach((s) => spy.observe(s));
+      }
+    </script>
+  </body>
+</html>

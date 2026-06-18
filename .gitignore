@@ -1,0 +1,18 @@
+# build output
+dist/
+# generated Astro types
+.astro/
+# dependencies
+node_modules/
+# logs
+npm-debug.log*
+yarn-error.log*
+# environment
+.env
+.env.production
+.env.local
+# editor / OS
+.DS_Store
+.vscode/
+# Claude Code local preview config
+.claude/

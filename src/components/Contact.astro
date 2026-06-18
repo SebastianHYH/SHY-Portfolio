@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+
+<section class="contact" id="contact">
+  <header class="section-head reveal">
+    <h2>Get in touch</h2>
+    <p>Have an opportunity or just want to say hello? I'd love to hear from you.</p>
+  </header>
+  <div class="contact-cards reveal">
+    <a class="contact-card" href={`mailto:${site.email}`}>
+      <Icon name="mail" />
+      <span class="contact-label">Email</span>
+      <span class="contact-value">{site.email}</span>
+    </a>
+    <a class="contact-card" href={site.phoneHref}>
+      <Icon name="phone" />
+      <span class="contact-label">Phone</span>
+      <span class="contact-value">{site.phone}</span>
+    </a>
+  </div>
+</section>

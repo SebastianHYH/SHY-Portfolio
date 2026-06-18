@@ -1,0 +1,35 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import { getProjects } from '../lib/github';
+import { site } from '../data/site';
+
+const projects = await getProjects();
+---
+
+<section class="projects" id="projects">
+  <header class="section-head reveal">
+    <h2>Projects</h2>
+    <p>A selection of things I've built — visualizers, solvers, tooling and dashboards.</p>
+  </header>
+
+  {
+    projects.length > 0 ? (
+      <div class="projects-grid">
+        {projects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+    ) : (
+      <div class="empty-projects reveal">
+        <p>
+          Projects will appear here once repositories are tagged on GitHub with
+          one of these topics: {
+            site.projectTopics.map((t, i) => (
+              <>{i > 0 ? ', ' : ''}<code>{t.topic}</code></>
+            ))
+          }.
+        </p>
+      </div>
+    )
+  }
+</section>
