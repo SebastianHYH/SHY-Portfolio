@@ -1,11 +1,9 @@
 ---
 import Icon from './Icon.astro';
 import { site } from '../data/site';
-import { getLanguages } from '../lib/github';
 import { withBase } from '../lib/util';
 
 const brandName = site.name.replace(' ', '<br>');
-const languages = await getLanguages();
 ---
 
 <header class="sidebar">
