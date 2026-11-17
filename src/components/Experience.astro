@@ -1,0 +1,70 @@
+---
+import ExperienceEntry from './ExperienceEntry.astro';
+import { work, organizations, volunteering, education, awards } from '../data/experience';
+
+const highlights = volunteering.filter((v) => v.highlight);
+const rest = volunteering.filter((v) => !v.highlight);
+---
+
+<section id="experience" class="section" aria-labelledby="experience-h">
+  <h2 id="experience-h" class="section-title">Experience</h2>
+
+  <h3 class="group-title">Work</h3>
+  <ol class="timeline">
+    {work.map((e) => <ExperienceEntry entry={e} />)}
+  </ol>
+
+  <h3 class="group-title">Organisations</h3>
+  <ol class="timeline">
+    {organizations.map((e) => <ExperienceEntry entry={e} />)}
+  </ol>
+
+  <h3 class="group-title">Volunteering</h3>
+  <ol class="timeline">
+    {highlights.map((e) => <ExperienceEntry entry={e} />)}
+  </ol>
+  {
+    rest.length > 0 && (
+      <details class="more-entries">
+        <summary>
+          <span class="when-closed">Show {rest.length} more</span>
+          <span class="when-open">Show fewer</span>
+        </summary>
+        <ol class="timeline compact">
+          {rest.map((e) => <ExperienceEntry entry={e} />)}
+        </ol>
+      </details>
+    )
+  }
+
+  <h3 class="group-title">Education</h3>
+  <ol class="timeline">
+    <li class="entry">
+      <p class="entry-date">{education.period}</p>
+      <div>
+        <h4 class="entry-title">
+          {education.degree}, <span class="entry-org">{education.school}</span>
+        </h4>
+        <p class="entry-text">
+          GPA {education.gpa}. Courses include {education.courses.slice(0, -1).join(', ')} and{' '}
+          {education.courses.at(-1)}.
+        </p>
+      </div>
+    </li>
+  </ol>
+
+  <h3 class="group-title">Awards</h3>
+  <ul class="timeline compact">
+    {
+      awards.map((a) => (
+        <li class="entry">
+          <p class="entry-date">{a.date}</p>
+          <div>
+            <p class="entry-title">{a.title}</p>
+            <p class="entry-text">{a.detail}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>

@@ -1,35 +1,95 @@
 ---
-import ProjectCard from './ProjectCard.astro';
-import { getProjects } from '../lib/github';
+import Icon from './Icon.astro';
+import { featured } from '../data/projects';
+import { getOtherProjects } from '../lib/github';
 import { site } from '../data/site';
+import { withBase } from '../lib/util';
 
-const projects = await getProjects();
+const others = await getOtherProjects();
+/** Splits copy so only the "[Placeholder] ..." part is styled as a placeholder. */
+const splitPlaceholder = (text: string): [string, boolean][] => {
+  const i = text.indexOf('[Placeholder]');
+  if (i === -1) return [[text, false]];
+  return [[text.slice(0, i), false], [text.slice(i), true]].filter(([t]) => t) as [string, boolean][];
+};
+const repoUrl = (repo: string) => `${site.githubUrl}/${repo}`;
 ---
 
-<section class="projects" id="projects">
-  <header class="section-head reveal">
-    <h2>Projects</h2>
-    <p>A selection of things I've built — visualizers, solvers, tooling and dashboards.</p>
-  </header>
+<section id="projects" class="section" aria-labelledby="projects-h">
+  <h2 id="projects-h" class="section-title">Projects</h2>
+
+  <ul class="featured">
+    {
+      featured.map((p) => {
+        const primary = p.demo ?? repoUrl(p.repo);
+        return (
+          <li class="feature">
+            <div class="feature-media">
+              {p.image ? (
+                <img src={withBase(p.image)} alt="" loading="lazy" width="320" height="200" />
+              ) : (
+                <span class="media-missing">Screenshot needed</span>
+              )}
+            </div>
+            <div class="feature-body">
+              <h3 class="feature-title">
+                <a href={primary} target="_blank" rel="noopener">
+                  {p.title}
+                  <Icon name="external" class="ic-ext" />
+                </a>
+              </h3>
+              <p class="feature-summary">{p.summary}</p>
+              <p class="feature-detail">
+                {splitPlaceholder(p.detail).map(([text, ph]) =>
+                  ph ? <span class="placeholder">{text}</span> : text,
+                )}
+              </p>
+              <ul class="chips" aria-label="Built with">
+                {p.stack.map((s) => <li>{s}</li>)}
+              </ul>
+              <p class="feature-links">
+                {p.demo && <a href={p.demo} target="_blank" rel="noopener">Live demo</a>}
+                <a href={repoUrl(p.repo)} target="_blank" rel="noopener">Source code</a>
+                {p.paper && <a href={p.paper} target="_blank" rel="noopener">Read the paper</a>}
+              </p>
+            </div>
+          </li>
+        );
+      })
+    }
+  </ul>
 
   {
-    projects.length > 0 ? (
-      <div class="projects-grid">
-        {projects.map((project) => (
-          <ProjectCard project={project} />
-        ))}
-      </div>
-    ) : (
-      <div class="empty-projects reveal">
-        <p>
-          Projects will appear here once repositories are tagged on GitHub with
-          one of these topics: {
-            site.projectTopics.map((t, i) => (
-              <>{i > 0 ? ', ' : ''}<code>{t.topic}</code></>
-            ))
-          }.
-        </p>
-      </div>
+    others.length > 0 && (
+      <>
+        <h3 class="sub-title">Other projects</h3>
+        <table class="others">
+          <thead>
+            <tr>
+              <th scope="col">Year</th>
+              <th scope="col">Project</th>
+              <th scope="col" class="col-type">Type</th>
+              <th scope="col" class="col-lang">Language</th>
+            </tr>
+          </thead>
+          <tbody>
+            {others.map((o) => (
+              <tr>
+                <td class="col-year">{o.year}</td>
+                <td>
+                  <a href={o.url} target="_blank" rel="noopener">{o.title}</a>
+                  {o.description && <span class="other-desc">{o.description}</span>}
+                </td>
+                <td class="col-type">{o.label}</td>
+                <td class="col-lang">{o.language}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
     )
   }
+  <p class="more">
+    <a href={site.githubUrl} target="_blank" rel="noopener">Everything else is on GitHub</a>
+  </p>
 </section>

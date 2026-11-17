@@ -1,0 +1,23 @@
+---
+import { papers } from '../data/papers';
+---
+
+<section id="papers" class="section" aria-labelledby="papers-h">
+  <h2 id="papers-h" class="section-title">Papers</h2>
+  <ol class="timeline">
+    {
+      papers.map((p) => (
+        <li class="entry">
+          <p class="entry-date">{p.date}</p>
+          <div>
+            <h3 class="entry-title">
+              <a href={p.url} target="_blank" rel="noopener">{p.title}</a>
+            </h3>
+            <p class="entry-text">{p.summary}</p>
+            <p class="entry-meta">Written for {p.course}, ITB</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>

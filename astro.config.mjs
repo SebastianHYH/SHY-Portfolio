@@ -9,4 +9,10 @@ export default defineConfig({
   build: {
     assets: 'assets',
   },
+  markdown: {
+    // Code blocks carry both palettes; global.css switches them with the theme.
+    shikiConfig: {
+      themes: { light: 'github-light', dark: 'github-dark' },
+    },
+  },
 });

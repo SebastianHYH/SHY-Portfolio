@@ -1,18 +1,9 @@
 ---
-import Icon from './Icon.astro';
 import { site } from '../data/site';
 
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <p>© {year} {site.name}</p>
-  <div class="footer-social">
-    <a href={site.linkedinUrl} target="_blank" rel="noopener" aria-label="LinkedIn">
-      <Icon name="linkedin" />
-    </a>
-    <a href={site.githubUrl} target="_blank" rel="noopener" aria-label="GitHub">
-      <Icon name="github" />
-    </a>
-  </div>
+  <p>© {year} {site.name}. Built with Astro.</p>
 </footer>

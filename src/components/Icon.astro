@@ -1,15 +1,13 @@
 ---
 interface Props {
   name:
-    | 'user'
-    | 'grid'
     | 'mail'
-    | 'phone'
     | 'github'
     | 'linkedin'
-    | 'arrow'
     | 'external'
-    | 'star';
+    | 'download'
+    | 'sun'
+    | 'moon';
   class?: string;
 }
 const { name, class: className } = Astro.props;
@@ -25,23 +23,9 @@ const stroke = {
 const solid = { fill: 'currentColor' };
 
 const paths: Record<Props['name'], { attrs: Record<string, string>; body: string }> = {
-  user: {
-    attrs: stroke,
-    body: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
-  },
-  grid: {
-    attrs: stroke,
-    body:
-      '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>',
-  },
   mail: {
     attrs: stroke,
     body: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',
-  },
-  phone: {
-    attrs: stroke,
-    body:
-      '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/>',
   },
   github: {
     attrs: solid,
@@ -53,17 +37,18 @@ const paths: Record<Props['name'], { attrs: Record<string, string>; body: string
     body:
       '<path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/>',
   },
-  arrow: { attrs: stroke, body: '<path d="M5 12h14M13 6l6 6-6 6"/>' },
   external: {
     attrs: stroke,
     body:
       '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/>',
   },
-  star: {
-    attrs: solid,
+  download: { attrs: stroke, body: '<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>' },
+  sun: {
+    attrs: stroke,
     body:
-      '<path d="M12 2.5l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 18.56 6.09 21.6l1.13-6.57L2.45 9.44l6.6-.96L12 2.5Z"/>',
+      '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>',
   },
+  moon: { attrs: stroke, body: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>' },
 };
 
 const icon = paths[name];
