@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+import { withBase } from '../lib/util';
+
+const pages = site.pages.filter(
+  (p) => p.enabled === true || (p.enabled === 'dev' && import.meta.env.DEV),
+);
+const here = Astro.url.pathname;
+const isCurrent = (href: string) =>
+  href === '/' ? here === '/' || here === '/index.html' : here.startsWith(href);
+---
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href={withBase('/')} aria-label={`${site.name}, home`}>SHY</a>
+
+    {
+      pages.length > 1 && (
+        <nav class="pages" aria-label="Pages">
+          <ul>
+            {pages.map((p) => (
+              <li>
+                <a href={withBase(p.href)} aria-current={isCurrent(p.href) ? 'page' : undefined}>
+                  {p.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+
+    <div class="topbar-actions">
+      <a class="cv-link" href={withBase(site.cv)} target="_blank" rel="noopener" aria-label="Résumé (PDF)">
+        <Icon name="download" /> <span class="cv-text">Résumé</span>
+      </a>
+      <button class="theme-toggle" type="button" aria-label="Switch colour theme">
+        <Icon name="sun" class="ic-sun" />
+        <Icon name="moon" class="ic-moon" />
+      </button>
+    </div>
+  </div>
+</header>

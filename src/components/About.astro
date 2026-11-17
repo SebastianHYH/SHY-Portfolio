@@ -1,0 +1,10 @@
+---
+import { site, isPlaceholder } from '../data/site';
+---
+
+<section id="about" class="section" aria-labelledby="about-h">
+  <h2 id="about-h" class="section-title">About</h2>
+  <div class="prose">
+    {site.about.map((p) => <p class:list={{ placeholder: isPlaceholder(p) }}>{p}</p>)}
+  </div>
+</section>

@@ -1,0 +1,67 @@
+---
+import Icon from './Icon.astro';
+import { site, isPlaceholder } from '../data/site';
+import { withBase } from '../lib/util';
+
+const sections = [
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'papers', label: 'Papers' },
+  { id: 'contact', label: 'Contact' },
+];
+const [first, ...rest] = site.name.split(' ');
+---
+
+<header class="intro">
+  <div>
+    <img
+      class="avatar"
+      src={withBase('files/img/profile.webp')}
+      alt=""
+      width="72"
+      height="72"
+    />
+    <h1 class="name">
+      <a href="#top">{first}<br />{rest.join('\u00a0')}</a>
+    </h1>
+    <p class="headline">{site.headline}</p>
+    <p class="intro-text">{site.intro}</p>
+    {
+      site.availability && (
+        <p class:list={['status', { placeholder: isPlaceholder(site.availability) }]}>
+          <span class="status-dot" aria-hidden="true" />
+          {site.availability}
+        </p>
+      )
+    }
+
+    <nav class="toc" aria-label="Sections">
+      <ul>
+        {sections.map((s) => (
+          <li><a href={`#${s.id}`}>{s.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="intro-foot">
+    <ul class="socials">
+      <li>
+        <a href={site.githubUrl} target="_blank" rel="noopener" aria-label="GitHub">
+          <Icon name="github" />
+        </a>
+      </li>
+      <li>
+        <a href={site.linkedinUrl} target="_blank" rel="noopener" aria-label="LinkedIn">
+          <Icon name="linkedin" />
+        </a>
+      </li>
+      <li>
+        <a href={`mailto:${site.email}`} aria-label="Email">
+          <Icon name="mail" />
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
