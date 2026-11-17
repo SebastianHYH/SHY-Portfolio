@@ -44,8 +44,9 @@ export const featured: Featured[] = [
     title: 'Drift',
     summary: 'An anonymous, ephemeral letter platform for reaching out to strangers.',
     detail:
-      '[Placeholder] How it works, what you built (stack, hardest part), and ' +
-      'whether people use it.',
+      // '[Placeholder] How it works, what you built (stack, hardest part), and ' +
+      // 'whether people use it.',
+      '',
     stack: ['TypeScript'],
     image: 'files/img/drift.svg',
   },
@@ -54,8 +55,9 @@ export const featured: Featured[] = [
     title: 'Quaternion Visualizer',
     summary: 'An app that shows what quaternion rotations actually do to a 3D object.',
     detail:
-      '[Placeholder] What you can do in it, and what made it tricky (e.g. ' +
-      'interpolation, gimbal lock comparison, rendering).',
+      // '[Placeholder] What you can do in it, and what made it tricky (e.g. ' +
+      // 'interpolation, gimbal lock comparison, rendering).',
+      '',
     stack: ['Python'],
     image: 'files/img/quaternion.webp',
   },
@@ -64,8 +66,8 @@ export const featured: Featured[] = [
     title: 'Spark Tools',
     summary: 'A command-line viewer for Fortnite Festival songs.',
     detail:
-      'Fetches and modifies MIDI data and album artwork for each track. ' +
-      '[Placeholder] Who uses it, or what you learned building it.',
+      'Allows you to go through the Fortnite Festival setlist through the terminal ' +
+      'complete with artist, album, difficulty, etc.',
     stack: ['Go', 'CLI', 'MIDI'],
     image: 'files/img/sparktools.webp',
   },
