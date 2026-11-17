@@ -1,11 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// Project is served from https://sebastianhyh.github.io/SHY-Portfolio/
-// `site` + `base` make all generated links and the sitemap path-correct.
+// Project is served from the custom domain https://sebastianhy.dev/ (root path),
+// so no `base` is needed. `site` makes generated links and the sitemap absolute.
 export default defineConfig({
-  site: 'https://sebastianhyh.github.io',
-  base: '/SHY-Portfolio',
+  site: 'https://sebastianhy.dev',
   trailingSlash: 'ignore',
   build: {
     assets: 'assets',

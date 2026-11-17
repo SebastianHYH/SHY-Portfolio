@@ -21,7 +21,7 @@ export const site = {
   cv: "files/CV_SebastianHY.pdf",
 
   /** Canonical URL of the deployed site. */
-  url: "https://sebastianhyh.github.io/SHY-Portfolio/",
+  url: "https://sebastianhy.dev/",
 
   github: "SebastianHYH",
   githubUrl: "https://github.com/SebastianHYH",

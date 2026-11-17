@@ -18,7 +18,7 @@ next build, no manual editing.
 ## Project structure
 
 ```
-astro.config.mjs          site URL + base path (/SHY-Portfolio)
+astro.config.mjs          site URL (https://sebastianhy.dev)
 src/
   data/
     site.ts               name, tagline, contact, social links, project topic
@@ -47,7 +47,7 @@ public/files/             images (WebP), favicon, CV
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/SHY-Portfolio/
+npm run dev      # http://localhost:4321/
 npm run build    # output to ./dist
 npm run preview  # preview the production build
 ```
@@ -61,7 +61,7 @@ Hosted on **GitHub Pages** via GitHub Actions.
 > `gh-pages` branch). After that, every push to `main` deploys automatically and
 > the weekly schedule keeps projects fresh.
 
-Live at <https://sebastianhyh.github.io/SHY-Portfolio/>.
+Live at <https://sebastianhy.dev/>.
 
 ## Regenerating images
 

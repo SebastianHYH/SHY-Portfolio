@@ -1,4 +1,4 @@
-const base = import.meta.env.BASE_URL; // e.g. "/SHY-Portfolio/"
+const base = import.meta.env.BASE_URL; // "/" on the custom domain
 
 /**
  * Prefix a public-asset path with the site's base path so links work both
