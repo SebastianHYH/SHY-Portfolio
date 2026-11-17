@@ -256,15 +256,6 @@ main {
 /* ============================================================
    Intro column
    ============================================================ */
-.avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 28px;
-    background: var(--accent-soft);
-}
-
 /* The one loud thing on the page: the name, condensed and heavy. */
 .name {
     font-family: var(--font-display);
@@ -1105,11 +1096,10 @@ main {
         animation-delay: .08s;
     }
 
-    .enter .intro :is(.avatar, .headline, .intro-text, .status, .toc, .intro-foot) {
+    .enter .intro :is(.headline, .intro-text, .status, .toc, .intro-foot) {
         animation: fade-up .6s var(--ease) both;
     }
 
-    .enter .intro .avatar      { animation-delay: 0s; }
     .enter .intro .headline    { animation-delay: .3s; }
     .enter .intro .intro-text  { animation-delay: .38s; }
     .enter .intro .status      { animation-delay: .46s; }

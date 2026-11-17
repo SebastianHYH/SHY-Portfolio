@@ -27,8 +27,7 @@ export const site = {
     "Outside coursework I'm a sysadmin assistant at STEI ITB, where I manage the " +
       "school's Google Workspace accounts and mailing lists and set up machines, " +
       'servers and networks for lab sessions.',
-    "I'm also a music director of the ITB Student Orchestra, where I play " +
-      'clarinet and cello and help run our performances.',
+    "I'm also a musician where I mainly play the clarinet for orchestras or shows including ISO, Parchestra, UPI Symphonic Band, and more.",
     // '[Placeholder] One or two sentences on what you want to work on next.',
   ],
 

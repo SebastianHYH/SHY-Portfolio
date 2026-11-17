@@ -1,7 +1,6 @@
 ---
 import Icon from './Icon.astro';
 import { site, isPlaceholder } from '../data/site';
-import { withBase } from '../lib/util';
 
 const sections = [
   { id: 'about', label: 'About' },
@@ -15,13 +14,6 @@ const [first, ...rest] = site.name.split(' ');
 
 <header class="intro">
   <div>
-    <img
-      class="avatar"
-      src={withBase('files/img/profile.webp')}
-      alt=""
-      width="72"
-      height="72"
-    />
     <h1 class="name">
       <a href="#top">
         <span class="name-line"><span>{first}</span></span>
