@@ -56,6 +56,13 @@ const favicon = withBase('files/x-icon.svg');
         const t = localStorage.getItem('theme');
         if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
       } catch {}
+      // Play the intro entrance once per visit, not on every page load.
+      try {
+        if (!sessionStorage.getItem('entered')) {
+          document.documentElement.classList.add('enter');
+          sessionStorage.setItem('entered', '1');
+        }
+      } catch {}
     </script>
 
     <meta name="generator" content={Astro.generator} />
@@ -72,9 +79,16 @@ const favicon = withBase('files/x-icon.svg');
       const current = () =>
         root.dataset.theme ?? (prefersDark.matches ? 'dark' : 'light');
 
-      document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+      const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle');
+
+      toggle?.addEventListener('click', () => {
         const next = current() === 'dark' ? 'light' : 'dark';
         root.dataset.theme = next;
+        // Restart the icon turn on every click.
+        toggle.classList.remove('turn');
+        void toggle.offsetWidth;
+        toggle.classList.add('turn');
         try {
           localStorage.setItem('theme', next);
         } catch {}
@@ -86,6 +100,15 @@ const favicon = withBase('files/x-icon.svg');
         .map((l) => document.querySelector(l.hash))
         .filter((el): el is Element => el !== null);
 
+      // A single accent bar slides between the section links.
+      const tocList = document.querySelector<HTMLElement>('.toc ul');
+      function moveIndicator(link: HTMLElement) {
+        if (!tocList) return;
+        tocList.style.setProperty('--ind-y', `${link.offsetTop}px`);
+        tocList.style.setProperty('--ind-h', `${link.offsetHeight}px`);
+        tocList.classList.add('has-indicator');
+      }
+
       if ('IntersectionObserver' in window && sections.length) {
         const spy = new IntersectionObserver(
           (entries) => {
@@ -94,14 +117,50 @@ const favicon = withBase('files/x-icon.svg');
               for (const l of links) {
                 const on = l.hash === `#${entry.target.id}`;
                 l.classList.toggle('active', on);
-                if (on) l.setAttribute('aria-current', 'true');
-                else l.removeAttribute('aria-current');
+                if (on) {
+                  l.setAttribute('aria-current', 'true');
+                  moveIndicator(l);
+                } else l.removeAttribute('aria-current');
               }
             }
           },
           { rootMargin: '-30% 0px -60% 0px' },
         );
         sections.forEach((s) => spy.observe(s));
+      }
+
+      // ---- "Show N more": animate the height instead of snapping -----------
+      for (const details of document.querySelectorAll<HTMLDetailsElement>('.more-entries')) {
+        const summary = details.querySelector('summary');
+        const body = details.querySelector<HTMLElement>(':scope > :not(summary)');
+        if (!summary || !body) continue;
+        let running: Animation | null = null;
+        let wantOpen = details.open;
+
+        summary.addEventListener('click', (e) => {
+          if (reduceMotion.matches) return;
+          e.preventDefault();
+          // Start from the current height, so a click mid-animation reverses it.
+          const from = details.open ? body.getBoundingClientRect().height : 0;
+          running?.cancel();
+          const opening = (wantOpen = !wantOpen);
+          details.open = true;
+          const to = opening ? body.offsetHeight : 0;
+
+          body.style.overflow = 'hidden';
+          running = body.animate(
+            [
+              { height: `${from}px`, opacity: opening ? 0 : 1 },
+              { height: `${to}px`, opacity: opening ? 1 : 0 },
+            ],
+            { duration: 320, easing: 'cubic-bezier(.4, 0, .2, 1)' },
+          );
+          running.onfinish = () => {
+            if (!opening) details.open = false;
+            body.style.overflow = '';
+            running = null;
+          };
+        });
       }
     </script>
   </body>

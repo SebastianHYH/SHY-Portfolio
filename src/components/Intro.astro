@@ -23,7 +23,10 @@ const [first, ...rest] = site.name.split(' ');
       height="72"
     />
     <h1 class="name">
-      <a href="#top">{first}<br />{rest.join('\u00a0')}</a>
+      <a href="#top">
+        <span class="name-line"><span>{first}</span></span>
+        <span class="name-line"><span>{rest.join('\u00a0')}</span></span>
+      </a>
     </h1>
     <p class="headline">{site.headline}</p>
     <p class="intro-text">{site.intro}</p>

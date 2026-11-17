@@ -282,6 +282,19 @@ main {
     color: inherit;
 }
 
+/* Each line of the name sits in its own mask so it can rise into place.
+   The padding keeps descenders (g, y) from being clipped. */
+.name-line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: .12em;
+    margin-bottom: -.12em;
+}
+
+.name-line > span {
+    display: inline-block;
+}
+
 .headline {
     margin-top: 20px;
     font-size: var(--step-1);
@@ -316,9 +329,28 @@ main {
 }
 
 .toc ul {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 2px;
+}
+
+/* One accent bar that slides to the active link (positioned by Base.astro). */
+.toc ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: var(--ind-h, 0);
+    background: var(--accent);
+    transform: translateY(var(--ind-y, 0));
+    opacity: 0;
+    transition: transform .4s var(--ease), height .4s var(--ease), opacity .2s var(--ease);
+}
+
+.toc ul.has-indicator::before {
+    opacity: 1;
 }
 
 .toc a {
@@ -337,8 +369,12 @@ main {
 
 .toc a.active {
     color: var(--text);
-    border-color: var(--accent);
     padding-left: 22px;
+}
+
+/* Without the script, fall back to colouring the active link's own border. */
+.toc ul:not(.has-indicator) a.active {
+    border-color: var(--accent);
 }
 
 .intro-foot {
@@ -405,6 +441,15 @@ main {
 
 :root[data-theme="light"] .ic-sun { display: none; }
 :root[data-theme="light"] .ic-moon { display: block; }
+
+.theme-toggle.turn svg {
+    animation: turn-in .45s var(--ease);
+}
+
+@keyframes turn-in {
+    from { transform: rotate(-90deg) scale(.6); opacity: 0; }
+    to   { transform: none; opacity: 1; }
+}
 
 /* ============================================================
    Sections
@@ -573,8 +618,8 @@ main {
     display: inline;
 }
 
-.more-entries[open] summary {
-    margin-bottom: 28px;
+.more-entries > .timeline {
+    padding-top: 28px;
 }
 
 /* ============================================================
@@ -626,6 +671,20 @@ main {
     align-items: center;
     gap: 6px;
     text-decoration: none;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: color .15s var(--ease), background-size .3s var(--ease);
+}
+
+.feature-title a:hover {
+    background-size: 100% 1px;
+}
+
+.ic-ext {
+    transition: transform .2s var(--ease);
+}
+
+.feature-title a:hover .ic-ext {
+    transform: translate(2px, -2px);
 }
 
 .ic-ext {
@@ -1034,6 +1093,40 @@ main {
     }
 }
 
+/* ============================================================
+   Entrance (once per visit, see Base.astro)
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+    .enter .name-line > span {
+        animation: rise .8s cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    .enter .name-line:nth-child(2) > span {
+        animation-delay: .08s;
+    }
+
+    .enter .intro :is(.avatar, .headline, .intro-text, .status, .toc, .intro-foot) {
+        animation: fade-up .6s var(--ease) both;
+    }
+
+    .enter .intro .avatar      { animation-delay: 0s; }
+    .enter .intro .headline    { animation-delay: .3s; }
+    .enter .intro .intro-text  { animation-delay: .38s; }
+    .enter .intro .status      { animation-delay: .46s; }
+    .enter .intro .toc         { animation-delay: .54s; }
+    .enter .intro .intro-foot  { animation-delay: .62s; }
+}
+
+@keyframes rise {
+    from { transform: translateY(105%); }
+    to   { transform: none; }
+}
+
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -1043,5 +1136,7 @@ main {
     *::before,
     *::after {
         transition-duration: .001ms !important;
+        animation-duration: .001ms !important;
+        animation-delay: 0s !important;
     }
 }
